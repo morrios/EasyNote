@@ -14,6 +14,8 @@
 		1873A4671F1626B900DDADE2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1873A4651F1626B900DDADE2 /* LaunchScreen.storyboard */; };
 		1873A4721F1626B900DDADE2 /* EasyNoteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1873A4711F1626B900DDADE2 /* EasyNoteTests.swift */; };
 		1873A47D1F1626B900DDADE2 /* EasyNoteUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1873A47C1F1626B900DDADE2 /* EasyNoteUITests.swift */; };
+		1873A48B1F1626FD00DDADE2 /* ENTextInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1873A48A1F1626FD00DDADE2 /* ENTextInView.swift */; };
+		1873A48D1F16339600DDADE2 /* WNNoteWriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1873A48C1F16339600DDADE2 /* WNNoteWriteViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +49,8 @@
 		1873A4781F1626B900DDADE2 /* EasyNoteUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EasyNoteUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1873A47C1F1626B900DDADE2 /* EasyNoteUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EasyNoteUITests.swift; sourceTree = "<group>"; };
 		1873A47E1F1626B900DDADE2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1873A48A1F1626FD00DDADE2 /* ENTextInView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ENTextInView.swift; sourceTree = "<group>"; };
+		1873A48C1F16339600DDADE2 /* WNNoteWriteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WNNoteWriteViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +103,8 @@
 			children = (
 				1873A45C1F1626B900DDADE2 /* AppDelegate.swift */,
 				1873A45E1F1626B900DDADE2 /* ViewController.swift */,
+				1873A48C1F16339600DDADE2 /* WNNoteWriteViewController.swift */,
+				1873A48A1F1626FD00DDADE2 /* ENTextInView.swift */,
 				1873A4601F1626B900DDADE2 /* Main.storyboard */,
 				1873A4631F1626B900DDADE2 /* Assets.xcassets */,
 				1873A4651F1626B900DDADE2 /* LaunchScreen.storyboard */,
@@ -193,6 +199,7 @@
 				TargetAttributes = {
 					1873A4581F1626B900DDADE2 = {
 						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = HC39SD8T38;
 						ProvisioningStyle = Automatic;
 					};
 					1873A46C1F1626B900DDADE2 = {
@@ -261,6 +268,8 @@
 			files = (
 				1873A45F1F1626B900DDADE2 /* ViewController.swift in Sources */,
 				1873A45D1F1626B900DDADE2 /* AppDelegate.swift in Sources */,
+				1873A48B1F1626FD00DDADE2 /* ENTextInView.swift in Sources */,
+				1873A48D1F16339600DDADE2 /* WNNoteWriteViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -414,6 +423,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = HC39SD8T38;
 				INFOPLIST_FILE = EasyNote/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = beequick.EasyNote;
@@ -426,6 +436,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = HC39SD8T38;
 				INFOPLIST_FILE = EasyNote/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = beequick.EasyNote;
