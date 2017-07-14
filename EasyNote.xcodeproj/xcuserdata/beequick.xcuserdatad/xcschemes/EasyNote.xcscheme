@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "1873A4581F1626B900DDADE2"
+               BlueprintIdentifier = "1820989E1F18B407006AFA68"
                BuildableName = "EasyNote.app"
                BlueprintName = "EasyNote"
                ReferencedContainer = "container:EasyNote.xcodeproj">
@@ -32,7 +32,7 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "1873A46C1F1626B900DDADE2"
+               BlueprintIdentifier = "182098B21F18B407006AFA68"
                BuildableName = "EasyNoteTests.xctest"
                BlueprintName = "EasyNoteTests"
                ReferencedContainer = "container:EasyNote.xcodeproj">
@@ -42,7 +42,7 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "1873A4771F1626B900DDADE2"
+               BlueprintIdentifier = "182098BD1F18B407006AFA68"
                BuildableName = "EasyNoteUITests.xctest"
                BlueprintName = "EasyNoteUITests"
                ReferencedContainer = "container:EasyNote.xcodeproj">
@@ -52,7 +52,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "1873A4581F1626B900DDADE2"
+            BlueprintIdentifier = "1820989E1F18B407006AFA68"
             BuildableName = "EasyNote.app"
             BlueprintName = "EasyNote"
             ReferencedContainer = "container:EasyNote.xcodeproj">
@@ -75,7 +75,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "1873A4581F1626B900DDADE2"
+            BlueprintIdentifier = "1820989E1F18B407006AFA68"
             BuildableName = "EasyNote.app"
             BlueprintName = "EasyNote"
             ReferencedContainer = "container:EasyNote.xcodeproj">
@@ -94,7 +94,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "1873A4581F1626B900DDADE2"
+            BlueprintIdentifier = "1820989E1F18B407006AFA68"
             BuildableName = "EasyNote.app"
             BlueprintName = "EasyNote"
             ReferencedContainer = "container:EasyNote.xcodeproj">

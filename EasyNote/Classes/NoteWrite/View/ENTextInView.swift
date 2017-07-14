@@ -8,6 +8,12 @@
 
 import UIKit
 
+
+protocol ENTextInViewDelegate {
+    func TextInView(textView: UITextView, textLength: Int, count: Int)
+    
+}
+
 class ENTextInView: UIView,UITextViewDelegate {
 
     /*
@@ -33,23 +39,33 @@ class ENTextInView: UIView,UITextViewDelegate {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        textview.frame = self.bounds
+        let padding = CGFloat(10)
+        
+        textview.frame = CGRect(x:padding, y:0, width:(self.frame.width-2*padding), height:self.frame.height)
     }
     
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
 //        print("locaton：",range.location)
 //        print("text.length", textview.text.characters.count)
         // if range.length = 0,添加字符 range.length = 1,减字符
+        var textLength = 0
         var count = 0
+        
+        var str = textview.text
         if range.length==0 {
             if text.characters.count > 0 {
                 count = textview.text.characters.count + 1
+                str = textview.text + text
             }
         }else{
             count = textview.text.characters.count - 1
+            str = str!.substring(to: (str!.index(before: str!.endIndex)))
         }
-//        let str = textview.text.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
-        print("字符：", count)
+        print(str!)
+        let replaceString = str?.replacingOccurrences(of: " ", with: "")
+        textLength = str!.characters.count
+        count = replaceString!.characters.count
+//        print("字符：", count)
         return true
     }
 
