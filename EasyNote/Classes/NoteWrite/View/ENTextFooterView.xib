@@ -40,25 +40,25 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="字" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aWV-OA-IpX">
-                    <rect key="frame" x="329" y="65.5" width="12.5" height="14.5"/>
+                    <rect key="frame" x="331" y="65.5" width="12.5" height="14.5"/>
                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                     <color key="textColor" red="0.20000000000000001" green="0.2274509804" blue="0.25882352939999997" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ges-It-9aA">
-                    <rect key="frame" x="359.5" y="8" width="10.5" height="21"/>
+                    <rect key="frame" x="349" y="8" width="11" height="21"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" red="0.20000000000000001" green="0.22745098039215686" blue="0.25882352941176467" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="字符" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U1O-SW-Ktc">
-                    <rect key="frame" x="359.5" y="65.5" width="25" height="14.5"/>
+                    <rect key="frame" x="349" y="65.5" width="25" height="14.5"/>
                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                     <color key="textColor" red="0.20000000000000001" green="0.2274509804" blue="0.25882352939999997" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6R2-NM-BUY">
-                    <rect key="frame" x="340" y="8" width="367" height="21"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6R2-NM-BUY">
+                    <rect key="frame" x="331" y="8" width="10.5" height="21"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" red="0.20000000000000001" green="0.22745098039215686" blue="0.25882352941176467" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
@@ -75,13 +75,13 @@
                 <constraint firstItem="U1O-SW-Ktc" firstAttribute="centerY" secondItem="db5-dS-adW" secondAttribute="centerY" id="NVx-ux-AeV"/>
                 <constraint firstItem="aWV-OA-IpX" firstAttribute="centerY" secondItem="LIw-yH-cie" secondAttribute="centerY" id="aGF-4u-TPT"/>
                 <constraint firstItem="LIw-yH-cie" firstAttribute="centerY" secondItem="db5-dS-adW" secondAttribute="centerY" id="apS-pa-KA9"/>
-                <constraint firstAttribute="trailing" secondItem="Ges-It-9aA" secondAttribute="trailing" constant="5" id="h92-Ey-kCr"/>
+                <constraint firstAttribute="trailing" secondItem="Ges-It-9aA" secondAttribute="trailing" constant="15" id="h92-Ey-kCr"/>
                 <constraint firstItem="aWV-OA-IpX" firstAttribute="leading" secondItem="6R2-NM-BUY" secondAttribute="leading" id="kJZ-w5-zcG"/>
                 <constraint firstItem="6R2-NM-BUY" firstAttribute="centerY" secondItem="VYx-eU-9BM" secondAttribute="centerY" id="qmC-1x-eYY"/>
                 <constraint firstItem="1ks-Tm-Mr2" firstAttribute="centerY" secondItem="VYx-eU-9BM" secondAttribute="centerY" id="rEQ-2S-t0c"/>
                 <constraint firstAttribute="bottom" secondItem="db5-dS-adW" secondAttribute="bottom" constant="10" id="sqe-tL-slh"/>
                 <constraint firstItem="VYx-eU-9BM" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="10" id="uCS-tb-bRa"/>
-                <constraint firstItem="Ges-It-9aA" firstAttribute="leading" secondItem="6R2-NM-BUY" secondAttribute="trailing" constant="20" id="yHS-vu-9l6"/>
+                <constraint firstItem="Ges-It-9aA" firstAttribute="leading" secondItem="6R2-NM-BUY" secondAttribute="trailing" constant="7.5" id="yHS-vu-9l6"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
@@ -95,7 +95,7 @@
                 <outlet property="wordCountAboveLable" destination="6R2-NM-BUY" id="lzv-Cv-0Lp"/>
                 <outlet property="wordDownLable" destination="aWV-OA-IpX" id="MTy-ue-SHf"/>
             </connections>
-            <point key="canvasLocation" x="222" y="68"/>
+            <point key="canvasLocation" x="221.5" y="68"/>
         </view>
     </objects>
 </document>

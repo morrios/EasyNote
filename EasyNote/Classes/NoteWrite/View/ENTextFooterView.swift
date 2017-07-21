@@ -10,14 +10,6 @@ import UIKit
 
 class ENTextFooterView: UIView {
 
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
-    }
-    */
-
     @IBOutlet weak var timeAboveLable: UILabel!
     @IBOutlet weak var addressAboveLable: UILabel!
     @IBOutlet weak var wordCountAboveLable: UILabel!
@@ -27,10 +19,22 @@ class ENTextFooterView: UIView {
     @IBOutlet weak var wordDownLable: UILabel!
     @IBOutlet weak var characterDownLable: UILabel!
     
-    var time: String?
+
+    
     var noteModel:ENNoteModel? {
         didSet{
-            
+            if noteModel?.creatType == ENCreateType.New {
+                timeAboveLable.text = noteModel?.time
+                if noteModel?.address != nil {
+                    addressAboveLable.text = noteModel?.address
+                }
+                if noteModel?.city != nil {
+                    cityDownLable.text = noteModel?.city
+                }
+                
+            }else{
+                
+            }
         }
     }
     
@@ -40,7 +44,7 @@ class ENTextFooterView: UIView {
     }
     
     func initViews() {
-        let aboveFont = UIFont.systemFont(ofSize: 16)
+        let aboveFont = UIFont.systemFont(ofSize: 18)
         let downFont = UIFont.systemFont(ofSize: 12)
         
         timeAboveLable.font = aboveFont
@@ -51,7 +55,7 @@ class ENTextFooterView: UIView {
         noteDownLable.font = downFont
         cityDownLable.font = downFont
         wordDownLable.font = downFont
-        characterAboveLable.font = downFont
+        characterDownLable.font = downFont
         
         noteDownLable.textColor = minorColor
         

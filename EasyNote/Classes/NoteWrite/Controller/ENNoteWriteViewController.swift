@@ -7,55 +7,182 @@
 //
 
 import UIKit
+import CoreLocation
 
-class ENNoteWriteViewController: UIViewController {
+class ENNoteWriteViewController: UIViewController, CLLocationManagerDelegate, ENTextInViewDelegate {
 
     let backBtn = UIButton.init(type: UIButtonType.custom)
     let nav = ENTextNavigationView.init(frame: CGRect(x:0, y:20, width:screenWidth, height:44))
     let textview = ENTextInView()
+    let textModel = ENNoteModel()
+    let footView = Bundle.main.loadNibNamed("ENTextFooterView", owner: nil, options: nil)?.first as? ENTextFooterView
+    let locationManager = CLLocationManager()
+    
 //    let footerView = ENTextFooterView()
 
+    let sqltool = sqlTool.sharedInstance
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
-        
         self.view.backgroundColor = mainColor
+        locationManager.delegate = self
+        locationManager.requestAlwaysAuthorization()
+
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.startUpdatingLocation()
+        }else{
+            print("您没有开启定位服务")
+        }
+        
         
         let textview_y: CGFloat = 64.0
         let footviewHeight = CGFloat(56)
+        
+        
+        initCreateDate()
         
         textview.frame = CGRect(x:0,y:textview_y,width:screenWidth,height:(self.view.bounds.height - textview_y - footviewHeight))
         textview.setUp()
         self.view.addSubview(textview)
         self.view.addSubview(nav)
+        textview.dalegate = self
         weak var weakSelf = self
         nav.btnClickBlock = {
             weakSelf!.view.endEditing(true)
             weakSelf!.dismiss(animated: true, completion: {
+                print("dismiss")
+                if (weakSelf?.textModel.content?.characters.count)! > 0 {
+                    weakSelf!.sqltool.insertSQL(model: (weakSelf?.textModel)!)
+                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: LoadSqlDatasNotification), object: nil)
+                }
                 
             })
+        }
+        
+        footView?.frame = CGRect(x:0,y:textview.bottom,width:screenWidth,height:footviewHeight)
+        self.view.addSubview(footView!)
+        footView?.noteModel = textModel
+        initNotification()  
+    }
+
+    func initNotification() {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+
+    }
+    
+    func keyboardWillShow(notification: NSNotification) {
+        let dict: Dictionary = notification.userInfo!
+        print("keyboardWillShow\(dict)")
+        let duration = dict["UIKeyboardAnimationDurationUserInfoKey"] as! Double
+        let AnimaotionOptions = dict["UIKeyboardAnimationCurveUserInfoKey"] as! Int
+        let rectValue = dict["UIKeyboardBoundsUserInfoKey"] as! NSValue
+        let keyBoardRect = rectValue.cgRectValue
+        
+        print("duration = \(duration)")
+        print("keyBoardRect = \(keyBoardRect)")
+        UIView.animateKeyframes(withDuration: duration, delay: 0, options: UIViewKeyframeAnimationOptions(rawValue: UInt(AnimaotionOptions)), animations: { 
+            self.footView?.bottom = screenHeight - keyBoardRect.size.height
+
+        }) { (Bool) in
             
         }
         
-        nav.dateString = getCurrentDate()
-        
-        let myView = Bundle.main.loadNibNamed("ENTextFooterView", owner: nil, options: nil)?.first as? ENTextFooterView
-        myView?.frame = CGRect(x:0,y:textview.bottom,width:screenWidth,height:footviewHeight)
-        self.view.addSubview(myView!)
     }
+    //MARK:delegate
+    func TextInView(textView: UITextView, model: textClass) {
+        
+        footView?.characterAboveLable.text = "\(model.textLength)"
+        footView?.wordCountAboveLable.text = "\(model.count)"
+        
+        textModel.wordCount = model.count
+        textModel.characterCount = model.textLength
+        textModel.content = model.content
+    }
+    
+    //MARK: locaction delegate
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print(error)
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        let changeLocation:NSArray = locations as NSArray
+        let currentLocation = changeLocation.lastObject as! CLLocation
+        
+        print(currentLocation.coordinate.latitude)
+        
+        let geocode = CLGeocoder()
+        geocode.reverseGeocodeLocation(currentLocation) { (places, error) in
+            if error == nil {
+                let placeMark:CLPlacemark = (places?.first)!
+                let addressDict = placeMark.addressDictionary!
+                var cityStr = addressDict["Country"]!
+                if addressDict["administrativeArea"] != nil {
+                    cityStr = "\(cityStr) \(addressDict["administrativeArea"]!)"
+                }
+                cityStr = "\(cityStr) \(addressDict["City"]!)"
+                let addressStr = addressDict["Street"] as! String
+                
+                if self.textModel.creatType == ENCreateType.New {
+                    self.textModel.city = cityStr as! String
+                    self.textModel.address = addressStr
+                    self.footView?.noteModel = self.textModel
+                }
 
-
-    func getCurrentDate() -> String {
+            }else{
+                print(error!)
+            }
+            
+         
+            
+        }
+        
+        locationManager.stopUpdatingLocation()
+    }
+    
+    func initCreateDate() {
 
         let date = Date()
         let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy年MM月dd日 EEEE"
-        return formatter.string(from: date)
-        
+        if textModel.creatType == ENCreateType.New {
+            formatter.dateFormat = "yyyy年MM月dd日 EEEE"
+            textModel.createdDate = formatter.string(from: date)
+            formatter.dateFormat = "hh:mm tt"
+            textModel.time = formatter.string(from: date)
+            nav.dateString = textModel.createdDate
+            
+            var dateStamp:TimeInterval = date.timeIntervalSince1970
+            
+            var dateSt:Int = Int(dateStamp)
+            print("ssssss")
+            print(dateSt)
+            
+            timeStampToString(timeStamp: String(dateSt))
+            
+            
+        }
     }
     
-
+    func timeStampToString(timeStamp:String)->String {
+        
+        let string = NSString(string: timeStamp)
+        
+        let timeSta:TimeInterval = string.doubleValue
+        let dfmatter = DateFormatter()
+        dfmatter.dateFormat="yyyy年MM月dd日 EEEE"
+        
+        let date = Date(timeIntervalSince1970: timeSta)
+        
+        print(dfmatter.string(from: date))
+        return dfmatter.string(from: date)
+    }
+    
+    
+    deinit {
+        print("deinit")
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -75,173 +202,4 @@ class ENNoteWriteViewController: UIViewController {
 
 }
 
-extension UIView{
-    var x : CGFloat {
-        
-        get {
-            
-            return frame.origin.x
-        }
-        
-        set(newVal) {
-            
-            var tmpFrame : CGRect = frame
-            tmpFrame.origin.x     = newVal
-            frame                 = tmpFrame
-        }
-    }
-    
-    // y
-    var y : CGFloat {
-        
-        get {
-            
-            return frame.origin.y
-        }
-        
-        set(newVal) {
-            
-            var tmpFrame : CGRect = frame
-            tmpFrame.origin.y     = newVal
-            frame                 = tmpFrame
-        }
-    }
-    
-    // height
-    var height : CGFloat {
-        
-        get {
-            
-            return frame.size.height
-        }
-        
-        set(newVal) {
-            
-            var tmpFrame : CGRect = frame
-            tmpFrame.size.height  = newVal
-            frame                 = tmpFrame
-        }
-    }
-    
-    // width
-    var width : CGFloat {
-        
-        get {
-            
-            return frame.size.width
-        }
-        
-        set(newVal) {
-            
-            var tmpFrame : CGRect = frame
-            tmpFrame.size.width   = newVal
-            frame                 = tmpFrame
-        }
-    }
-    
-    // left
-    var left : CGFloat {
-        
-        get {
-            
-            return x
-        }
-        
-        set(newVal) {
-            
-            x = newVal
-        }
-    }
-    
-    // right
-    var right : CGFloat {
-        
-        get {
-            
-            return x + width
-        }
-        
-        set(newVal) {
-            
-            x = newVal - width
-        }
-    }
-    
-    // top
-    var top : CGFloat {
-        
-        get {
-            
-            return y
-        }
-        
-        set(newVal) {
-            
-            y = newVal
-        }
-    }
-    
-    // bottom
-    var bottom : CGFloat {
-        
-        get {
-            
-            return y + height
-        }
-        
-        set(newVal) {
-            
-            y = newVal - height
-        }
-    }
-    
-    var centerX : CGFloat {
-        
-        get {
-            
-            return center.x
-        }
-        
-        set(newVal) {
-            
-            center = CGPoint(x: newVal, y: center.y)
-        }
-    }
-    
-    var centerY : CGFloat {
-        
-        get {
-            
-            return center.y
-        }
-        
-        set(newVal) {
-            
-            center = CGPoint(x: center.x, y: newVal)
-        }
-    }
-    
-    var middleX : CGFloat {
-        
-        get {
-            
-            return width / 2
-        }
-    }
-    
-    var middleY : CGFloat {
-        
-        get {
-            
-            return height / 2
-        }
-    }
-    
-    var middlePoint : CGPoint {
-        
-        get {
-            
-            return CGPoint(x: middleX, y: middleY)
-        }
-    }
-}
+

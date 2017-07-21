@@ -10,16 +10,27 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    let mainView = MianView()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         self.view.backgroundColor = mainColor
-
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(loadSQLDatas), name: NSNotification.Name(rawValue: LoadSqlDatasNotification), object: nil)
+        self.loadSQLDatas()
+        mainView.frame = self.view.frame
+        self.view.addSubview(mainView)
     }
 
-    @IBAction func goToNote(_ sender: Any) {
-        self.present(ENNoteWriteViewController(), animated: true, completion: nil)
+    func loadSQLDatas() {
+        let sqltool = sqlTool.sharedInstance
+        let models = sqltool.seachAllSQL()
+        mainView.notes = models
+
     }
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

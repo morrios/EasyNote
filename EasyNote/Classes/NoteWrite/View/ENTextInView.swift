@@ -8,9 +8,16 @@
 
 import UIKit
 
+struct textClass {
+    var content:String = ""
+    var textLength = 0
+    var count = 0
+    
+    
+}
 
-protocol ENTextInViewDelegate {
-    func TextInView(textView: UITextView, textLength: Int, count: Int)
+protocol ENTextInViewDelegate:class {
+    func TextInView(textView: UITextView, model: textClass)
     
 }
 
@@ -24,6 +31,8 @@ class ENTextInView: UIView,UITextViewDelegate {
     }
     */
     let textview = UITextView()
+    weak var dalegate: ENTextInViewDelegate? = nil
+    
     
     func setUp() {
         self.backgroundColor = UIColor.white
@@ -65,6 +74,11 @@ class ENTextInView: UIView,UITextViewDelegate {
         let replaceString = str?.replacingOccurrences(of: " ", with: "")
         textLength = str!.characters.count
         count = replaceString!.characters.count
+        var textModel = textClass()
+        textModel.textLength = textLength
+        textModel.count = count
+        textModel.content = str!
+        dalegate?.TextInView(textView: textView, model: textModel)
 //        print("字符：", count)
         return true
     }

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="MainTopView" customModule="EasyNote" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nrq-RM-8XJ">
+                    <rect key="frame" x="0.0" y="0.0" width="187.5" height="667"/>
+                    <state key="normal" image="camera"/>
+                    <connections>
+                        <action selector="cameraAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="jF3-oc-ISb"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PXx-VZ-kIK">
+                    <rect key="frame" x="187" y="0.0" width="187.5" height="667"/>
+                    <state key="normal" image="add"/>
+                    <connections>
+                        <action selector="addAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="GCR-4I-2TA"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="Nrq-RM-8XJ" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="1YU-3P-kKH"/>
+                <constraint firstItem="Nrq-RM-8XJ" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="1ZD-rK-WFN"/>
+                <constraint firstAttribute="bottom" secondItem="PXx-VZ-kIK" secondAttribute="bottom" id="F3d-8A-g6F"/>
+                <constraint firstAttribute="trailing" secondItem="Nrq-RM-8XJ" secondAttribute="trailing" multiplier="2" id="dgj-jJ-OVK"/>
+                <constraint firstAttribute="bottom" secondItem="Nrq-RM-8XJ" secondAttribute="bottom" id="iTQ-gk-UEk"/>
+                <constraint firstItem="PXx-VZ-kIK" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="ijZ-5x-vmD"/>
+                <constraint firstAttribute="trailing" secondItem="PXx-VZ-kIK" secondAttribute="trailing" id="pN9-ih-wxH"/>
+                <constraint firstItem="PXx-VZ-kIK" firstAttribute="width" secondItem="Nrq-RM-8XJ" secondAttribute="width" id="xuW-6u-rYY"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="-53.5" y="13.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="add" width="48" height="48"/>
+        <image name="camera" width="48" height="48"/>
+    </resources>
+</document>
